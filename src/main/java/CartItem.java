@@ -1,7 +1,7 @@
 
 
 /**
- * Class for constructing a CartItem
+ * Class constructing a CartItem
  *
  * @author Daniel Ekerot
  * @since: 2006-06-24

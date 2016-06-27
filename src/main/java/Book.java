@@ -1,5 +1,12 @@
 import java.math.BigDecimal;
 
+/**
+ * Class constructing a Book
+ *
+ * @author Daniel Ekerot
+ * @since: 2006-06-24
+ */
+
 public class Book{
 
     private final String title;

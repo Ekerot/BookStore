@@ -2,7 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * Created by ekerot on 2016-06-03.
+ * Class to execute program without GUI in console
+ *
+ * @author Daniel Ekerot
+ * @since: 2006-06-24
  */
 
 class MainBook {

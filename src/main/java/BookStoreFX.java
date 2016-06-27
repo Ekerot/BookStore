@@ -22,6 +22,13 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Graphical interface for a BookStore
+ *
+ * @author Daniel Ekerot
+ * @since: 2006-06-24
+ */
+
 public class BookStoreFX extends Application {
 
     public static void main(String[] args) {
