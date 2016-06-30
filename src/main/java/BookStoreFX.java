@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -229,26 +230,27 @@ public class BookStoreFX extends Application {
                                               answer = "We don´t have enough books of " + c.getBook().getTitle() + " in stock!";
                                           } else if (tmp[i] == 2) {
                                               answer = "Book " + c.getBook().getTitle() + " does not exist!";
+                                          } else {
+
+                                              i++;
+
                                           }
 
-                                          i++;
+                                          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                          alert.setTitle("Confirmation Dialog");
+                                          alert.setHeaderText("Press OK to confirm");
+                                          alert.setContentText(answer);
 
-                                      }
+                                          Optional<ButtonType> result = alert.showAndWait();
+                                          if (result.get() == ButtonType.OK) {
 
-                                      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                      alert.setTitle("Confirmation Dialog");
-                                      alert.setHeaderText("Press OK to confirm");
-                                      alert.setContentText(answer);
+                                          } else
 
-                                      Optional<ButtonType> result = alert.showAndWait();
-                                      if (result.get() == ButtonType.OK) {
-                                          alert.close();
+                                          {
 
-                                      } else
+                                              alert.close();
 
-                                      {
-
-                                          alert.close();
+                                          }
 
                                       }
 

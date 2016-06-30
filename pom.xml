@@ -15,7 +15,6 @@
     </properties>
 
     <dependencies>
-        <!-- several dependencies -->
         <dependency>
             <groupId>org.diirt.javafx</groupId>
             <artifactId>javafx-all</artifactId>
