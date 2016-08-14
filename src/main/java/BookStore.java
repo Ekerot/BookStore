@@ -122,13 +122,6 @@ class BookStore implements IBookList {
         return inStock;
     }
 
-    protected void resize() {
-        Book[] tmp = new Book[searchList.length + 1];
-        int size = searchList.length + 1;
-        System.arraycopy(searchList, 0, tmp, 0, searchList.length);
-        searchList = tmp;
-    }
-
     private void removeElement(Book[] b, int del) {
         System.arraycopy(b, del + 1, b, del, b.length - 1 - del);
     }
@@ -157,18 +150,5 @@ class BookStore implements IBookList {
         return String.valueOf(sum);
 
     }
-
-    public String toString() {
-
-        StringBuilder sb = new StringBuilder();
-
-        for (Book b : books) {
-            sb.append(String.format("%-30s %-30s %s", "Title: " + b.getTitle(), "Author:  " + b.getAuthor(), "Price: " + b.getPrice() + "\n"));
-        }
-
-        return sb.toString();
-
-    }
-
 
 }
