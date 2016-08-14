@@ -133,10 +133,6 @@ class BookStore implements IBookList {
         System.arraycopy(b, del + 1, b, del, b.length - 1 - del);
     }
 
-    public void removeAllElements() {
-        cart.removeAll(cart);
-    }
-
     public ArrayList<Book> getArrayListBooks() {
 
         return books;
@@ -168,18 +164,6 @@ class BookStore implements IBookList {
 
         for (Book b : books) {
             sb.append(String.format("%-30s %-30s %s", "Title: " + b.getTitle(), "Author:  " + b.getAuthor(), "Price: " + b.getPrice() + "\n"));
-        }
-
-        return sb.toString();
-
-    }
-
-    public String printCart() {
-
-        StringBuilder sb = new StringBuilder();
-
-        for (CartItem c : cart) {
-            sb.append(String.format("%-30s %s", "Title: " + c.getBook().getTitle(), c.getAmount() + "\n"));
         }
 
         return sb.toString();
