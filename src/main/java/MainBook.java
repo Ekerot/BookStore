@@ -84,7 +84,9 @@ class MainBook {
 
                     if (antal > b.getBooks(valBok - 1).getStock()) {
                         System.out.println("Vi har inte så många böcker i lager!");
-                    } else {
+                    }
+
+                    else {
                         float temp = b.getBooks(valBok - 1).getPrice().floatValue() * antal;
                         System.out.println("Boken är tillagd i din kundvagn!");
                         pris = pris + temp;

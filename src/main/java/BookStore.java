@@ -83,6 +83,7 @@ class BookStore implements IBookList {
         CartItem cart1 = new CartItem(book, quantity);
 
         cart.add(cart1);
+
         return true;
     }
 
