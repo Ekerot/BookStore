@@ -15,7 +15,7 @@ class MainBook {
     public static void main(String[] args) throws FileNotFoundException {
 
         BookStore b = new BookStore();
-        File file = new File("/Users/ekerot/Documents/bookstoredata.txt");
+        File file = new File("src/main/resources/bookstoredata.txt");
 
         b.addBookList(file);
         int choice;

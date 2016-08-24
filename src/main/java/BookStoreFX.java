@@ -43,7 +43,7 @@ public class BookStoreFX extends Application {
         BookStore b = new BookStore();
         ArrayList<CartItem> cart = b.getCart();
 
-        File file = new File("/Users/ekerot/Documents/bookstoredata.txt");
+        File file = new File("src/main/bookstoredata.txt");
 
         try {
             b.addBookList(file);

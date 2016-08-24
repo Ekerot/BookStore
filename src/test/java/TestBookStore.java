@@ -1,10 +1,10 @@
 import org.junit.Test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by ekerot on 2016-08-14.
@@ -28,7 +28,7 @@ public class TestBookStore {
     @Test
     public void testAddBook(){
 
-        File file = new File("/Users/ekerot/Documents/bookstoredata.txt");
+        File file = new File("src/main/resources/bookstoredata.txt");
 
         try {
             testBook.addBookList(file);
@@ -45,7 +45,7 @@ public class TestBookStore {
     @Test
     public void testRemoveBook(){
 
-        File file = new File("/Users/ekerot/Documents/bookstoredata.txt");
+        File file = new File("src/main/resources/bookstoredata.txt");
 
         try {
             testBook.addBookList(file);
@@ -58,15 +58,6 @@ public class TestBookStore {
         assertEquals(false, testBook.getCart().isEmpty());
         testBook.removeBook(testBook.getCart().get(0));
         assertEquals(true, testBook.getCart().isEmpty());
-    }
-
-    @Test (expected = FileNotFoundException.class)
-    public void testFileNotFoundException() throws FileNotFoundException{
-
-        File file;
-        file = new File("/Users/ekerot/Documents/");
-        testBook.addBookList(file);
-
     }
 
 }
