@@ -4,7 +4,7 @@
  * Class constructing a CartItem
  *
  * @author Daniel Ekerot
- * @since: 2006-06-24
+ * @since: 2006-11-06
  */
 
 class CartItem {

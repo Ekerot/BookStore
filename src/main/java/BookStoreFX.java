@@ -21,6 +21,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Optional;
 
 /**
@@ -40,13 +41,13 @@ public class BookStoreFX extends Application {
     public void start(Stage primaryStage) throws FileNotFoundException {
 
 
-        BookStore b = new BookStore();
-        ArrayList<CartItem> cart = b.getCart();
+        BookStore bookStore = new BookStore();
+        ArrayList<CartItem> cart = bookStore.getCart();
 
-        File file = new File("src/main/bookstoredata.txt");
+        File file = new File("src/main/resources/bookstoredata.txt");
 
         try {
-            b.addBookList(file);
+            bookStore.addBookList(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -153,14 +154,14 @@ public class BookStoreFX extends Application {
 
                                 if (textFieldSearch.getText().isEmpty()) {
 
-                                    ArrayList<Book> tmp = b.getArrayListBooks();
+                                    ArrayList<Book> tmp = bookStore.getArrayListBooks();
 
                                     ObservableList<Book> items = FXCollections.observableArrayList(tmp);
                                     listView.setItems(items);
 
                                 } else {
 
-                                    Book[] searchList = b.list(textFieldSearch.getText());
+                                    Book[] searchList = bookStore.list(textFieldSearch.getText());
 
                                     ObservableList<Book> items = FXCollections.observableArrayList(searchList);
                                     listView.setItems(items);
@@ -191,9 +192,9 @@ public class BookStoreFX extends Application {
 
                                           int quantity = Integer.parseInt(textFieldQuantity.getText());
 
-                                          b.add(listView.getSelectionModel().getSelectedItem(), quantity);
+                                          bookStore.add(listView.getSelectionModel().getSelectedItem(), quantity);
 
-                                          amountText.setText("Total: " + b.getNewPrice());
+                                          amountText.setText("Total: " + bookStore.getNewPrice());
 
                                           ObservableList<CartItem> items = FXCollections.observableArrayList(cart);
                                           listCart.setItems(items);
@@ -217,11 +218,11 @@ public class BookStoreFX extends Application {
                                   public void handle(ActionEvent event) throws StringIndexOutOfBoundsException {
 
                                       int[] tmp = new int[cart.size()];
-                                      String answer = "Your payment is " + b.getNewPrice() + " Press OK to buy!";
+                                      String answer = "Your payment is " + bookStore.getNewPrice() + " Press OK to buy!";
                                       int i = 0;
 
                                       for (CartItem c : cart) {
-                                          tmp = b.buy(c.getBook());
+                                          tmp = bookStore.buy(c.getBook());
 
                                           if (tmp[i] == 1) {
                                               answer = "Book " + c.getBook().getTitle() + " is out of stock!";
@@ -251,12 +252,24 @@ public class BookStoreFX extends Application {
                                               alert.close();
 
                                           }
+                                      }
+
+                                      for(int j = 0; j < cart.size(); j++) {
+
+                                          listCart.getSelectionModel().select(j);
+                                          bookStore.removeBook(listCart.getSelectionModel().getSelectedItem());
+                                          amountText.setText("Total: " + bookStore.getNewPrice());
 
                                       }
 
-                                  }
+                                      ObservableList<CartItem> items = FXCollections.observableArrayList(bookStore.getCart());
+                                      listCart.setItems(items);
 
+                                      listCart.refresh();
+
+                                  }
                               }
+
 
         );
 
@@ -271,13 +284,13 @@ public class BookStoreFX extends Application {
                                      @Override
                                      public void handle(ActionEvent event) throws StringIndexOutOfBoundsException {
 
-                                         b.removeBook(listCart.getSelectionModel().getSelectedItem());
+                                         bookStore.removeBook(listCart.getSelectionModel().getSelectedItem());
 
                                          listCart.refresh();
 
-                                         amountText.setText("Total: " + b.getNewPrice());
+                                         amountText.setText("Total: " + bookStore.getNewPrice());
 
-                                         ObservableList<CartItem> items = FXCollections.observableArrayList(b.getCart());
+                                         ObservableList<CartItem> items = FXCollections.observableArrayList(bookStore.getCart());
                                          listCart.setItems(items);
 
                                      }
@@ -328,7 +341,7 @@ public class BookStoreFX extends Application {
                                {
                                    @Override
                                    public void handle(ActionEvent event) {
-                                       b.addNewBook(title.getText(), author.getText(), price.getText(), stock.getText());
+                                       bookStore.addNewBook(title.getText(), author.getText(), price.getText(), stock.getText());
 
                                        title.setText("Title");
                                        author.setText("Author");

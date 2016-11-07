@@ -41,15 +41,14 @@ class BookStore implements IBookList {
             books.add(book);
 
         }
-
     }
 
     @Override
     public Book[] list(String searchString) {
 
-        for (int k = 0; k <= searchList.length - 1; k++) {
+        for (int i = 0; i <= searchList.length - 1; i++) {
 
-            removeElement(searchList, k);
+            removeElement(searchList, i);
 
         }
 
@@ -62,10 +61,8 @@ class BookStore implements IBookList {
                 searchList[j] = getBooks(i);
                 j++;
 
-
             }
         }
-
 
         return searchList;
     }
@@ -116,15 +113,14 @@ class BookStore implements IBookList {
                 inStock[i] = 0;
 
             }
-
-
         }
 
         return inStock;
     }
 
-    private void removeElement(Book[] b, int del) {
-        System.arraycopy(b, del + 1, b, del, b.length - 1 - del);
+    private void removeElement(Book[] book, int del) {
+
+        System.arraycopy(book, del + 1, book, del, book.length - 1 - del);
     }
 
     public ArrayList<Book> getArrayListBooks() {
@@ -140,16 +136,13 @@ class BookStore implements IBookList {
 
         double sum = 0;
 
-
         for (CartItem c : cart) {
             double price = c.getBook().getPrice().doubleValue();
             double quantity = (double) c.getAmount();
             sum = sum + (price * quantity);
         }
 
-
         return String.valueOf(sum);
 
     }
-
 }

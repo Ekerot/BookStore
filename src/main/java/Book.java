@@ -30,12 +30,12 @@ public class Book{
         return stock;
     }
 
-    Book(String t, String a, String p, int s) {
+    Book(String title, String author, String price, int stock) {
 
-        title = t;
-        author = a;
-        price = new BigDecimal(p.replaceAll(",", ""));
-        stock = s;
+        this.title = title;
+        this.author = author;
+        this.price = new BigDecimal(price.replaceAll(",", ""));
+        this.stock = stock;
 
     }
 
